@@ -11,6 +11,9 @@ numpy>=1.26.3
 httpx>=0.26.0
 requests>=2.31.0
 
+# KRX Data
+pykrx>=1.0.46
+
 # Task Scheduling (추후 설치)
 # apache-airflow==2.8.0
 
