@@ -39,8 +39,7 @@ wheels/
 Thumbs.db
 
 # Data
-data/raw/
-data/processed/
+data/
 *.db
 *.sqlite
 *.sqlite3
