@@ -1,0 +1,27 @@
+# Database (Python 3.13 compatible versions)
+psycopg2-binary>=2.9.10
+sqlalchemy>=2.0.25
+alembic>=1.13.1
+
+# Data Processing (Python 3.13 compatible)
+pandas>=2.2.0
+numpy>=1.26.3
+
+# API & HTTP
+httpx>=0.26.0
+requests>=2.31.0
+
+# Task Scheduling (추후 설치)
+# apache-airflow==2.8.0
+
+# Utilities
+python-dotenv>=1.0.1
+pydantic>=2.5.3
+pyyaml>=6.0.1
+
+# Testing
+pytest>=7.4.4
+pytest-asyncio>=0.23.3
+
+# Logging
+loguru>=0.7.2
