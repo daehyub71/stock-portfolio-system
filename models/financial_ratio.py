@@ -17,8 +17,9 @@ class FinancialRatio(Base, TimestampMixin):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     stock_id = Column(Integer, ForeignKey('stocks.id'), nullable=False, index=True, comment='Stock ID')
-    report_date = Column(Date, nullable=False, index=True, comment='Reporting date')
-    fiscal_year = Column(Integer, nullable=False, index=True, comment='Fiscal year')
+    date = Column(Date, nullable=False, index=True, comment='Data date (일별 데이터)')
+    report_date = Column(Date, comment='Reporting date (분기/연간 보고서용)')
+    fiscal_year = Column(Integer, index=True, comment='Fiscal year')
     fiscal_quarter = Column(Integer, comment='Fiscal quarter (1-4, NULL for annual)')
 
     # 수익성 지표 (Profitability Ratios)
@@ -65,16 +66,22 @@ class FinancialRatio(Base, TimestampMixin):
     bps = Column(Numeric(12, 2), comment='주당순자산 (Book value Per Share, KRW)')
     ebitda = Column(Numeric(15, 2), comment='EBITDA (KRW)')
 
+    # pykrx 추가 지표
+    div = Column(Numeric(10, 4), comment='배당수익률 (Dividend Yield, %) - pykrx')
+    dps = Column(Numeric(12, 2), comment='주당배당금 (Dividend Per Share, KRW) - pykrx')
+    payout_ratio = Column(Numeric(10, 4), comment='배당성향 (Payout Ratio, %) - calculated')
+
     # Relationship
     stock = relationship('Stock', back_populates='financial_ratios')
 
     # Composite unique constraint
     __table_args__ = (
         Index(
-            'idx_financial_ratios_unique',
-            'stock_id', 'report_date', 'fiscal_quarter',
+            'idx_financial_ratios_stock_date',
+            'stock_id', 'date',
             unique=True
         ),
+        Index('idx_financial_ratios_date', 'date'),
         Index('idx_financial_ratios_year_quarter', 'fiscal_year', 'fiscal_quarter'),
     )
 

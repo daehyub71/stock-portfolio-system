@@ -265,3 +265,31 @@ This project is licensed under the MIT License.
 ---
 
 **⚠️ 면책 조항**: 이 소프트웨어는 교육 및 연구 목적으로 제공됩니다. 실제 투자 결정에 사용하기 전에 반드시 전문가의 조언을 구하시기 바랍니다. 투자에는 위험이 따르며, 과거 성과가 미래 수익을 보장하지 않습니다.
+
+## 📊 Streamlit 대시보드
+
+Week 1-3 (Day 11-12) 완료 체크 및 데이터 품질 점검을 위한 웹 대시보드를 제공합니다.
+
+### 실행 방법
+
+```bash
+# 방법 1: 실행 스크립트 사용 (권장)
+./run_dashboard.sh
+
+# 방법 2: 직접 실행
+source venv/bin/activate
+streamlit run streamlit_app/main.py
+```
+
+브라우저에서 `http://localhost:8501` 접속
+
+### 대시보드 기능
+
+- **Week 1 체크**: 프로젝트 초기화 및 API 연동 검증 (Day 1-5)
+- **Week 2 체크**: 전체 종목 시세 데이터 수집 현황 (Day 6-10)
+- **Week 3 체크**: 재무제표 수집 현황 (Day 11-12)
+- **데이터 품질 점검**: NULL 체크, 논리 오류 검사, 종합 품질 점수
+- **데이터베이스 개요**: 테이블 정보, 스키마, 저장 공간 분석
+
+자세한 내용은 [streamlit_app/README.md](streamlit_app/README.md)를 참고하세요.
+
