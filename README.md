@@ -266,9 +266,41 @@ This project is licensed under the MIT License.
 
 **⚠️ 면책 조항**: 이 소프트웨어는 교육 및 연구 목적으로 제공됩니다. 실제 투자 결정에 사용하기 전에 반드시 전문가의 조언을 구하시기 바랍니다. 투자에는 위험이 따르며, 과거 성과가 미래 수익을 보장하지 않습니다.
 
+## 💰 재무비율 수집 (pykrx 기반)
+
+### 빠른 시작
+
+```bash
+# 1. 미수집 종목을 50개씩 그룹으로 나누기
+python scripts/create_ratio_groups.py --uncollected-only --group-size 50 --start-date 20220101
+
+# 2. 그룹별로 안정적으로 수집 (Group 1)
+python scripts/batch_collect_ratios.py --group-id 1 --years 3
+
+# 3. 전체 그룹 자동 수집
+python scripts/batch_collect_ratios.py --all --years 3
+```
+
+### 수집 데이터
+
+- **pykrx 직접 수집**: PER, PBR, EPS, BPS, DIV(배당수익률), DPS(주당배당금)
+- **자동 계산**: ROE(자기자본이익률), Payout Ratio(배당성향)
+
+### 그룹 기반 수집의 장점
+
+- ✅ **안정성**: 50개 단위로 나누어 중간 중단 시에도 안전
+- ✅ **재개 가능**: 5개 종목마다 체크포인트 저장, 중단 후 재개 가능
+- ✅ **실패 관리**: 실패한 종목만 별도 추출하여 재시도
+- ✅ **진행 추적**: 그룹별 진행 상황 명확히 파악
+
+### 상세 가이드
+
+- [재무비율 수집 가이드](docs/FINANCIAL_RATIOS_COLLECTION.md) - 기본 사용법
+- [그룹 기반 배치 수집 가이드](docs/BATCH_RATIO_COLLECTION.md) - 대량 수집 방법
+
 ## 📊 Streamlit 대시보드
 
-Week 1-3 (Day 11-12) 완료 체크 및 데이터 품질 점검을 위한 웹 대시보드를 제공합니다.
+Week 1-3 (Day 8-10) 완료 체크 및 데이터 품질 점검을 위한 웹 대시보드를 제공합니다.
 
 ### 실행 방법
 
@@ -287,7 +319,7 @@ streamlit run streamlit_app/main.py
 
 - **Week 1 체크**: 프로젝트 초기화 및 API 연동 검증 (Day 1-5)
 - **Week 2 체크**: 전체 종목 시세 데이터 수집 현황 (Day 6-10)
-- **Week 3 체크**: 재무제표 수집 현황 (Day 11-12)
+- **Week 3 체크**: 재무비율 수집 현황 (Day 8-10)
 - **데이터 품질 점검**: NULL 체크, 논리 오류 검사, 종합 품질 점수
 - **데이터베이스 개요**: 테이블 정보, 스키마, 저장 공간 분석
 
