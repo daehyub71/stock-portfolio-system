@@ -227,8 +227,8 @@ class DARTCollector:
                 elif "자본" in account_nm:
                     financial_statement["balance_sheet"]["equity"][account_nm] = amount
 
-            # 손익계산서 (IS: Income Statement)
-            elif sj_div == "IS":
+            # 손익계산서 (IS: Income Statement, CIS: Consolidated Income Statement)
+            elif sj_div in ("IS", "CIS"):
                 if "매출" in account_nm or "수익" in account_nm:
                     financial_statement["income_statement"]["revenue"][account_nm] = amount
                 elif "비용" in account_nm or "원가" in account_nm:
