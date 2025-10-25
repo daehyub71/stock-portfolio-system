@@ -1,0 +1,21 @@
+# Apache Airflow Requirements
+# Python 3.13 compatible versions
+
+# Airflow Core (2.10.4 supports Python 3.9-3.13)
+apache-airflow==2.10.4
+
+# Airflow Providers
+apache-airflow-providers-postgres==5.13.0
+apache-airflow-providers-http==4.13.0
+
+# Additional dependencies for Airflow
+apache-airflow[celery]==2.10.4
+apache-airflow[redis]==2.10.4
+
+# PostgreSQL (already in main requirements.txt but needed for Airflow)
+psycopg2-binary>=2.9.10
+
+# Constraint file for Python 3.13
+# Airflow provides constraint files for compatibility
+# Note: Using 3.12 constraints for 3.13 (closest compatible version)
+# Download from: https://raw.githubusercontent.com/apache/airflow/constraints-2.10.4/constraints-3.12.txt
